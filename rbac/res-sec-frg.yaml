@@ -9,6 +9,16 @@ metadata:
     rbac.authorization.k8s.io/aggregate-to-cust-security-officer: "true"
   name: res-sec-frg
 rules:
+# APP LOGS
+- apiGroups:
+  - ""
+  attributeRestrictions: null
+  resources:
+  - pods/log
+  verbs:
+  - get
+  - list
+  - watch
 # ROLES 
 - apiGroups:
   - rbac.authorization.k8s.io
