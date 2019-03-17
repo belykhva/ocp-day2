@@ -1,0 +1,137 @@
+apiVersion: authorization.openshift.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    openshift.io/description: A user who can create, edit, watch and remove secrets
+    openshift.io/reconcile-protect: "false"
+  labels:
+    kubernetes.io/bootstrapping: rbac-custom-rule
+    rbac.authorization.k8s.io/aggregate-to-cust-security-officer: "true"
+  name: res-sec-frg
+rules:
+# ROLES 
+- apiGroups:
+  - rbac.authorization.k8s.io
+  attributeRestrictions: null
+  resources:
+  - rolebindings
+  - roles
+  verbs:
+  - create
+  - delete
+  - deletecollection
+  - get
+  - list
+  - patch
+  - update
+  - watch
+# ROUTES
+- apiGroups:
+  - ""
+  - route.openshift.io
+  attributeRestrictions: null
+  resources:
+  - routes
+  verbs:
+  - create
+  - delete
+  - deletecollection
+  - get
+  - list
+  - patch
+  - update
+  - watch
+# SDN MANAGE
+- apiGroups:
+  - ""
+  - network.openshift.io
+  attributeRestrictions: null
+  resources:
+  - hostsubnets
+  - netnamespaces
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - watch
+- apiGroups:
+  - ""
+  - network.openshift.io
+  attributeRestrictions: null
+  resources:
+  - clusternetworks
+  verbs:
+  - create
+  - get
+- apiGroups:
+  - ""
+  attributeRestrictions: null
+  resources:
+  - nodes
+  verbs:
+  - get
+  - list
+  - watch
+# SECRETS
+- apiGroups:
+  - ""
+  attributeRestrictions: null
+  resources:
+  - secrets
+  verbs:
+  - create
+  - delete
+  - deletecollection
+  - get
+  - list
+  - patch
+  - update
+  - watch
+# IMAGES
+- apiGroups:
+  - ""
+  - image.openshift.io
+  attributeRestrictions: null
+  resources:
+  - imagestreamimages
+  - imagestreammappings
+  - imagestreams
+  - imagestreams/secrets
+  - imagestreamtags
+  verbs:
+  - create
+  - delete
+  - deletecollection
+ - get
+ - list
+  - patch
+  - update
+ - watch
+- apiGroups:
+ - ""
+ - image.openshift.io
+ attributeRestrictions: null
+ resources:
+ - imagestreams/status
+ verbs:
+ - get
+ - list
+ - watch
+- apiGroups:
+ - ""
+ - image.openshift.io
+ attributeRestrictions: null
+ resources:
+ - imagestreams/layers
+ verbs:
+ - get
+ - update
+- apiGroups:
+ - ""
+ - image.openshift.io
+ attributeRestrictions: null
+ resources:
+ - imagestreamimports
+ verbs:
+ - create
