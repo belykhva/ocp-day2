@@ -12,6 +12,7 @@ metadata:
     rbac.authorization.k8s.io/aggregate-to-cust-prj-dev: "true"
     rbac.authorization.k8s.io/aggregate-to-cust-prj-adm: "true"
     rbac.authorization.k8s.io/aggregate-to-cust-cluster-adm: "true"
+    rbac.authorization.k8s.io/aggregate-to-cust-security-officer: "true"
   name: res-resources-frg
 rules:
 - apiGroups:
